@@ -46,9 +46,9 @@ def predict(hspace, stm):
     Returns the prediction, STM item used to make the prediction, and entropy
     '''
     stm_matches = [hspace[p] for p in powersetNoEmpty(stm) if hspace.has_key(p)]
-    if len(stm_matches) == 0:
+    if not stm_matches:
         return None, np.inf
-    
+
     lowest_entropy = min(stm_matches, key=reliableEntropy)
     h = reliableEntropy(lowest_entropy)
     prediction = max(lowest_entropy.items(), key=itemgetter(1))
